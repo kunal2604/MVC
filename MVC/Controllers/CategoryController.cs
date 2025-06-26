@@ -16,5 +16,10 @@ namespace MVC.Controllers
             List<Category> categoriesList = _db.Categories.ToList();
             return View(categoriesList);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
