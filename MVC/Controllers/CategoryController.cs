@@ -21,5 +21,21 @@ namespace MVC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(Category newCategory)
+        {
+            if(newCategory.Name == newCategory.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "Name and Display Order can't be same");
+            }
+            if(ModelState.IsValid)
+            {
+                _db.Categories.Add(newCategory);
+                _db.SaveChanges();
+                return RedirectToAction("Index", "Category");
+            }
+            return View();
+        }
     }
 }
